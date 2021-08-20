@@ -24,15 +24,15 @@
 
 
 // Global settings
-// #define NUMLEDS 16							// Number of LEDs on the strip (if not set via build flags)
-// #define DATAPIN 26							// GPIO pin used to drive the LED strip (20 == GPIO/D13) (if not set via build flags)
+ #define DEFAULT_NUMLEDS 16						// Number of LEDs on the strip (if not set via build flags)
+ #define DEFAULT_DATAPIN 13						// GPIO pin used to drive the LED strip (20 == GPIO/D13) (if not set via build flags)
 // #define DISABLECERTCHECK 1					// Uncomment to disable https certificate checks (if not set via build flags)
 // #define STATUS_PIN LED_BUILTIN				// User builtin LED for status (if not set via build flags)
 #define DEFAULT_POLLING_PRESENCE_INTERVAL "30"	// Default interval to poll for presence info (seconds)
 #define DEFAULT_ERROR_RETRY_INTERVAL 30			// Default interval to try again after errors
 #define TOKEN_REFRESH_TIMEOUT 60	 			// Number of seconds until expiration before token gets refreshed
 #define CONTEXT_FILE "/context.json"			// Filename of the context file
-#define VERSION "0.18.1"						// Version of the software
+#define VERSION "0.18.2"						// Version of the software
 
 #define DBG_PRINT(x) Serial.print(x)
 #define DBG_PRINTLN(x) Serial.println(x)
@@ -118,11 +118,13 @@ IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
 char paramClientIdValue[STRING_LEN];
 char paramTenantValue[STRING_LEN];
 char paramPollIntervalValue[INTEGER_LEN];
+char paramLedDataPinValue[INTEGER_LEN];
 char paramNumLedsValue[INTEGER_LEN];
 IotWebConfSeparator separator = IotWebConfSeparator();
 IotWebConfParameter paramClientId = IotWebConfParameter("Client-ID (Generic ID: 3837bbf0-30fb-47ad-bce8-f460ba9880c3)", "clientId", paramClientIdValue, STRING_LEN, "text", "e.g. 3837bbf0-30fb-47ad-bce8-f460ba9880c3", "3837bbf0-30fb-47ad-bce8-f460ba9880c3");
 IotWebConfParameter paramTenant = IotWebConfParameter("Tenant hostname / ID", "tenantId", paramTenantValue, STRING_LEN, "text", "e.g. contoso.onmicrosoft.com");
 IotWebConfParameter paramPollInterval = IotWebConfParameter("Presence polling interval (sec) (default: 30)", "pollInterval", paramPollIntervalValue, INTEGER_LEN, "number", "10..300", DEFAULT_POLLING_PRESENCE_INTERVAL, "min='10' max='300' step='5'");
+IotWebConfParameter paramLedDataPin = IotWebConfParameter("LED Data Pin (default: 2)", "LedDataPin", paramLedDataPinValue, INTEGER_LEN, "number", "1..64", "2", "min='1' max='64' step='1'");
 IotWebConfParameter paramNumLeds = IotWebConfParameter("Number of LEDs (default: 16)", "numLeds", paramNumLedsValue, INTEGER_LEN, "number", "1..500", "16", "min='1' max='500' step='1'");
 byte lastIotWebConfState;
 
@@ -130,8 +132,14 @@ byte lastIotWebConfState;
 WiFiClientSecure client;
 
 // WS2812FX
-WS2812FX ws2812fx = WS2812FX(NUMLEDS, DATAPIN, NEO_GRB + NEO_KHZ800);
+// Create a WS2812FX object to represent your strip. Note it uses the
+// LED_COUNT and LED_PIN values to specify its characteristics. NEO_GRB
+// is a keyword that describes the order in which the WS2812’s individual
+// red, green and blue LEDs are programmed. NEO_GRB is very common, but
+// if you find the red and green colors are reversed, try NEO_RGB.
+WS2812FX ws2812fx = WS2812FX(DEFAULT_NUMLEDS, DEFAULT_DATAPIN, NEO_GRB + NEO_KHZ800);
 int numberLeds;
+int datapin;
 
 // OTA update
 HTTPUpdateServer httpUpdater;
@@ -581,12 +589,6 @@ void setup()
 		DBG_PRINTLN(F("WARNING: Checking of HTTPS certificates disabled."));
 	#endif
 
-	// WS2812FX
-	ws2812fx.init();
-	rmt_tx_int(RMT_CHANNEL_0, ws2812fx.getPin());
-	ws2812fx.start();
-	setAnimation(0, FX_MODE_STATIC, WHITE);
-
 	// iotWebConf - Initializing the configuration.
 	#ifdef LED_BUILTIN
 	iotWebConf.setStatusPin(LED_BUILTIN);
@@ -596,6 +598,7 @@ void setup()
 	iotWebConf.addParameter(&paramClientId);
 	iotWebConf.addParameter(&paramTenant);
 	iotWebConf.addParameter(&paramPollInterval);
+	iotWebConf.addParameter(&paramLedDataPin);
 	iotWebConf.addParameter(&paramNumLeds);
 	// iotWebConf.setFormValidator(&formValidator);
 	// iotWebConf.getApTimeoutParameter()->visible = true;
@@ -607,13 +610,27 @@ void setup()
 	iotWebConf.init();
 
 	// WS2812FX
+	datapin = atoi(paramLedDataPinValue);
+	if (datapin < 1) {
+		DBG_PRINTLN(F("LED Pin not given, using 2."));
+		datapin = DEFAULT_DATAPIN;
+	}
+
 	numberLeds = atoi(paramNumLedsValue);
 	if (numberLeds < 1) {
 		DBG_PRINTLN(F("Number of LEDs not given, using 16."));
-		numberLeds = NUMLEDS;
+		numberLeds = DEFAULT_NUMLEDS;
 	}
+
+	ws2812fx.setPin(datapin);
 	ws2812fx.setLength(numberLeds);
+
+	ws2812fx.init();
+	rmt_tx_int(RMT_CHANNEL_0, ws2812fx.getPin());
+	ws2812fx.start();
+	setAnimation(0, FX_MODE_STATIC, WHITE);
 	ws2812fx.setCustomShow(customShow);
+	
 
 	// HTTP server - Set up required URL handlers on the web server.
 	server.on("/", HTTP_GET, handleRoot);

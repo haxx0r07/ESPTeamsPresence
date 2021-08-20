@@ -173,6 +173,7 @@ void handleRoot() {
 	s += "<div class=\"nes-field mt-s\"><label for=\"name_field\">Client-ID</label><input type=\"text\" id=\"name_field\" class=\"nes-input\" disabled value=\"" + String(paramClientIdValue) +  "\"></div>";
 	s += "<div class=\"nes-field mt-s\"><label for=\"name_field\">Tenant hostname / ID</label><input type=\"text\" id=\"name_field\" class=\"nes-input\" disabled value=\"" + String(paramTenantValue) +  "\"></div>";
 	s += "<div class=\"nes-field mt-s\"><label for=\"name_field\">Polling interval (sec)</label><input type=\"text\" id=\"name_field\" class=\"nes-input\" disabled value=\"" + String(paramPollIntervalValue) +  "\"></div>";
+	s += "<div class=\"nes-field mt-s\"><label for=\"name_field\">LED Data Pin</label><input type=\"text\" id=\"name_field\" class=\"nes-input\" disabled value=\"" + String(paramLedDataPinValue) +  "\"></div>";
 	s += "<div class=\"nes-field mt-s\"><label for=\"name_field\">Number of LEDs</label><input type=\"text\" id=\"name_field\" class=\"nes-input\" disabled value=\"" + String(paramNumLedsValue) +  "\"></div>";
 	s += "</section>";
 
@@ -195,7 +196,7 @@ void handleRoot() {
 	s += "<div><button type=\"button\" class=\"nes-btn is-error\" onclick=\"document.getElementById('dialog-clearsettings').showModal();\">Clear all settings</button></div>";
 	s += "</section>";
 
-	s += "<div class=\"mt\"><i class=\"nes-icon github\"></i> Find the <a href=\"https://github.com/toblum/ESPTeamsPresence\" target=\"_blank\">ESPTeamsPresence</a> project on GitHub.</i></div>";
+	s += "<div class=\"mt\"><i class=\"nes-icon github\"></i> Find the <a href=\"https://github.com/haxx0r07/ESPTeamsPresence\" target=\"_blank\">ESPTeamsPresence</a> project on GitHub.</i></div>";
 
 	s += "</body>\n</html>\n";
 
@@ -210,6 +211,7 @@ void handleGetSettings() {
 	responseDoc["client_id"].set(paramClientIdValue);
 	responseDoc["tenant"].set(paramTenantValue);
 	responseDoc["poll_interval"].set(paramPollIntervalValue);
+	responseDoc["led_pin"].set(paramLedDataPinValue);
 	responseDoc["num_leds"].set(paramNumLedsValue);
 
 	responseDoc["heap"].set(ESP.getFreeHeap());
@@ -273,13 +275,21 @@ boolean formValidator() {
 		valid = false;
 	}
 
+	int l5 = server.arg(paramLedDataPin.getId()).length();
+	if (l5 < 1)
+	{
+		paramLedDataPin.errorMessage = "Please provide a value for the LED Pin!";
+		valid = false;
+	}
+
 	return valid;
 }
 
 // Config was saved
 void onConfigSaved() {
-	DBG_PRINTLN(F("Configuration was updated."));
+	ws2812fx.setPin(atoi(paramLedDataPinValue));
 	ws2812fx.setLength(atoi(paramNumLedsValue));
+	DBG_PRINTLN(F("Configuration was updated."));
 }
 
 // Requests to /startDevicelogin

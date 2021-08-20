@@ -41,6 +41,8 @@ Please provide the following data:
   Hostname of your tenant, e.g. contoso.onmicrosoft.com. You can also use the tenant GUID.
 - Presence polling interval (sec):  
   Intervall to poll for new presence information. Don't set this too low, you may stress the Azure infrastructure too much, and get throttled. 90 seconds or more may be a good value.
+- LED Data Pin:  
+  The GPIO pin that the LED strip is connected to.
 - Number of LEDs:  
   The number of LEDs in neopixel ring / strip.
 
