@@ -8,7 +8,7 @@ This video shows the build and setup process:
 
 ## Using prebuild firmware version (recommended)
 
-You can find the latest build on the [releases page](https://github.com/toblum/ESPTeamsPresence/releases). Download the "firmware.bin".  
+You can find the latest build on the [releases page](https://github.com/haxx0r07/ESPTeamsPresence/releases). Download the "firmware.bin".  
 > **Note:** There is also a "firmware-nocertcheck.bin". This version doesn't check the validity of the SSL certificates, when communicating with the Graph APIs. The communication is still encrypted. Use this version only if you know what that means.
 
 ### Prerequisites
@@ -21,7 +21,7 @@ There are many options to flash software to the board. The [nodemcu-pyflasher](h
 Plug the ESP32 board to your computer and wait for it to be detected.
 
 Use the following settings:  
-![Flasher settings](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/flasher_software.png)
+![Flasher settings](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/flasher_software.png)
 
 - Select the previously downloaded "firmware.bin" using the "Firmware" button.
 - Select the COM-port the software has detected.
@@ -35,6 +35,6 @@ Wrote 1074928 bytes (609269 compressed) at 0x00010000 in 10.8 seconds (effective
 Hash of data verified.
 ```
 
-![Flasher settings](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/flash_software.gif)
+![Flasher settings](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/flash_software.gif)
 
 I you don't have success with the nodemcu-pyflasher, you could also try [ESPHome-Flasher](https://github.com/esphome/esphome-flasher/releases/latest). It has also a serial monitor that gives you additional informations on what happens.

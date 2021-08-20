@@ -4,7 +4,7 @@ Hardware setup is extremely easy as the whole build consists of only two active 
 
 See the following schematic for the wiring:
 
-![Schematic](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/Esp32TeamsPresence.png)
+![Schematic](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/Esp32TeamsPresence.png)
 
 You can solder the wires directly to the neopixel ring and the ESP dev board. Or you can use dupont wires to build a non-permanent solution.
 
@@ -23,7 +23,7 @@ For this setup the DATA line should be connected to GPIO 13 (labeled as D13 on t
 
 ### Step 1: Wire neopixels
 
-![Neopixel connection](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/neopixel_connection.jpg)
+![Neopixel connection](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/neopixel_connection.jpg)
 
 This depends on the type of neopixels you're using. The most flexible solution is to solder three dupont wires to the neopixel board. 
 
@@ -36,18 +36,18 @@ You need to solder three wires:
 
 ### Step 2: Connect ESP32 and neopixels
 
-![Neopixel ESP32 connection](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/neopixel_esp32_connection.jpg)
+![Neopixel ESP32 connection](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/neopixel_esp32_connection.jpg)
 
-Connect ESP32 and neopixel according to the [schematic](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/Esp32TeamsPresence.png).
+Connect ESP32 and neopixel according to the [schematic](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/Esp32TeamsPresence.png).
 
 
 ### Step 3: Assemble in case
 
-![Assemble in case](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/hardware_glue.jpg)
+![Assemble in case](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/hardware_glue.jpg)
 
 Assemble everything. Hot glue or blue tack helps a lot. :-)
 
 
 ### Step 4: Finished
 
-![Assemble in case](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/hardware_finished.jpg)
+![Assemble in case](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/hardware_finished.jpg)

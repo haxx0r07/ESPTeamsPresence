@@ -1,8 +1,8 @@
 # ESP32 Teams Presence Light
 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
-![](https://github.com/toblum/ESPTeamsPresence/workflows/BuildAndRelease/badge.svg)
-![](https://img.shields.io/github/v/release/toblum/ESPTeamsPresence)
+![](https://github.com/haxx0r07/ESPTeamsPresence/workflows/BuildAndRelease/badge.svg)
+![](https://img.shields.io/github/v/release/haxx0r07/ESPTeamsPresence)
 
 
 **A standalone Microsoft Teams presence light based on ESP32 and RGB neopixel LEDs.**
@@ -16,7 +16,7 @@ See this video for a short overview:
 Some technical details:  
 This projects implements the device login flow to authenticate against Microsoft Azure AD and to get a access token. Using this token, the device can call the Microsoft Graph API to get presence information for the authenticated user. The token is automatically refreshed so that it can run standalone for some time.
 
-Everything is implemented in C code for Arduino-style microcontrollers and runs directly on the cheap and powerful WiFi-connected ESP32 board. [Getting the hardware](https://toblum.github.io/ESPTeamsPresence/#/buy) is usually no problem.
+Everything is implemented in C code for Arduino-style microcontrollers and runs directly on the cheap and powerful WiFi-connected ESP32 board. [Getting the hardware](https://haxx0r07.github.io/ESPTeamsPresence/#/buy) is usually no problem.
 
 [![Build and Setup](https://img.youtube.com/vi/DH3zN3nLk9w/0.jpg)](https://www.youtube.com/watch?v=DH3zN3nLk9w)
 

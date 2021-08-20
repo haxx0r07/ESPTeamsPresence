@@ -26,11 +26,11 @@ You can these even cheaper (less than 5 $) if you order directly from china:
 - https://www.gearbest.com/boards---shields/pp_009609274324.html
 
 DOIT ESP32 DevKit v1:  
-![DOIT ESP32 DevKit v1](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/doit_esp32_board.jpg)
+![DOIT ESP32 DevKit v1](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/doit_esp32_board.jpg)
 
 
 Wemos MINI D1 ESP32:  
-![Wemos MINI D1 ESP32](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/wemos_d1_mini_esp32.jpg)
+![Wemos MINI D1 ESP32](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/wemos_d1_mini_esp32.jpg)
 
 ## Neopixels (WS2812B RGB LEDs)
 
@@ -42,7 +42,7 @@ You can find these without problems below 10 $ and dirt ceap from china:
 - https://de.aliexpress.com/item/32835427711.html
 
 Neopixel variants:  
-![Neopixel variants](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/neopixels.jpg)
+![Neopixel variants](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/neopixels.jpg)
 
 
 ## Optional: Printed case
@@ -52,7 +52,7 @@ You can package the parts in numerous ways and maybe you have the perfect case a
 The design can be found on thingiverse: https://www.thingiverse.com/thing:4296998
 This is a [existing design](https://www.thingiverse.com/thing:4060603) from [Plankto](https://www.thingiverse.com/Plankto/about), I modified it to fit the neopixel ring and a ESP32.
 
-![Neopixel variants](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/case_printanimation.gif)
+![Neopixel variants](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/case_printanimation.gif)
 
 
 ## Cables

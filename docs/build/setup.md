@@ -11,7 +11,7 @@ This video shows the build and setup process:
 
 After you flashed your presence device, please power-cycle it once and wait for a few seconds. The device opens a own WiFi hotspot now. The name is "ESPTeamsPresence". You should be able to connect to it using your phone or any other WiFi-enabled device. The network is password-protected, use "presence" as password. It takes some seconds and you should be connected. This presence device shows a white running light animation.
 
-![Device hotspot](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_hotspot.png)
+![Device hotspot](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_hotspot.png)
 
 
 ## Step 2: Configure settings
@@ -19,7 +19,7 @@ After you flashed your presence device, please power-cycle it once and wait for 
 Now open a browser on the device / phone that is connected to the hotspot and open the following URL: http://192.168.4.1/config
 
 The configuration UI of the device should open now. It looks like this:  
-![Device hotspot](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_config.png)
+![Device hotspot](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_config.png)
 
 Please provide the following data:
 
@@ -58,7 +58,7 @@ This should work in most environments, but if not, you can reach it via it's IP 
 
 **If you need to find out the IP address of the device:**  
 While restarting, keep the serial monitor of the "ESP32 Flash Tool" open and you should see the following output and the IP the device has been assigned:  
-![Device IP](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_ip.png)
+![Device IP](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_ip.png)
 
 Alternatively you should be able to get the IP from your routers interface or by using a app like [Fing](https://www.fing.com/products/fing-app).
 
@@ -68,22 +68,22 @@ Alternatively you should be able to get the IP from your routers interface or by
 Make sure that you're connected to your home WiFi again, then open the interface in the browser, e.g. http://espteamspresence.local/ or http://192.168.0.84/ as described in the last step.
 
 You should now see the retro-style UI of the presence device:  
-![Device login](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_login_1.png)
+![Device login](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_login_1.png)
 
 It should say "No authentication infos found, start device login flow to complete widget setup!". Click "Start device login". The LEDs should show now a running purple animation.
 
 A popup opens up:  
-![Device login](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_login_2.png)
+![Device login](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_login_2.png)
 
 Copy the code that is displayed and click "Open device login" or open https://microsoft.com/devicelogin in your favorite browser. 
 
 Enter the copied code:  
-![Device login](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_login_3.png)
+![Device login](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_login_3.png)
 
 Login to Office 365 as usual using your regular account that you want to use for your presence.
 
 After login is completed you should may see this dialog:  
-![Device login](https://github.com/toblum/ESPTeamsPresence/raw/master/docs/pics/device_login_4.png)
+![Device login](https://github.com/haxx0r07/ESPTeamsPresence/raw/master/docs/pics/device_login_4.png)
 
 It asks you to consent that the Azure App, that the presence device uses in the background, is allowed to access your profile and presence data (and nothing else).
 
