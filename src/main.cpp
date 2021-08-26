@@ -103,14 +103,17 @@ const char* rootCACertificateGraph = \
 
 // IotWebConf
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
-const char thingName[] = "ESPTeamsPresence";
+const char defaultthingName[] = "ESPTeamsPresence";
 // -- Initial password to connect to the Thing, when it creates an own Access Point.
 const char wifiInitialApPassword[] = "presence";
 
 DNSServer dnsServer;
 WebServer server(80);
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
+IotWebConf iotWebConf(defaultthingName, &dnsServer, &server, wifiInitialApPassword);
+
+//set thingName to the stored value
+auto thingName = iotWebConf.getThingName();
 
 // Add parameter
 #define STRING_LEN 64
@@ -124,7 +127,7 @@ IotWebConfSeparator separator = IotWebConfSeparator();
 IotWebConfParameter paramClientId = IotWebConfParameter("Client-ID (Generic ID: 3837bbf0-30fb-47ad-bce8-f460ba9880c3)", "clientId", paramClientIdValue, STRING_LEN, "text", "e.g. 3837bbf0-30fb-47ad-bce8-f460ba9880c3", "3837bbf0-30fb-47ad-bce8-f460ba9880c3");
 IotWebConfParameter paramTenant = IotWebConfParameter("Tenant hostname / ID", "tenantId", paramTenantValue, STRING_LEN, "text", "e.g. contoso.onmicrosoft.com");
 IotWebConfParameter paramPollInterval = IotWebConfParameter("Presence polling interval (sec) (default: 30)", "pollInterval", paramPollIntervalValue, INTEGER_LEN, "number", "10..300", DEFAULT_POLLING_PRESENCE_INTERVAL, "min='10' max='300' step='5'");
-IotWebConfParameter paramLedDataPin = IotWebConfParameter("LED Data Pin (default: 2)", "LedDataPin", paramLedDataPinValue, INTEGER_LEN, "number", "1..64", "2", "min='1' max='64' step='1'");
+IotWebConfParameter paramLedDataPin = IotWebConfParameter("LED Data Pin (default: 2) Requires Decive power cycle to take effect", "ledDataPin", paramLedDataPinValue, INTEGER_LEN, "number", "1..64", "2", "min='1' max='64' step='1'");
 IotWebConfParameter paramNumLeds = IotWebConfParameter("Number of LEDs (default: 16)", "numLeds", paramNumLedsValue, INTEGER_LEN, "number", "1..500", "16", "min='1' max='500' step='1'");
 byte lastIotWebConfState;
 
